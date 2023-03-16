@@ -1,12 +1,10 @@
-const app = require("express")();
-const port = process.env.PORT || 8080;
+const http = require("http");
 
-app.use(express.static("public"));
+http
+  .createServer(function (req, res) {
+    res.write("Server working");
+    res.end();
+  })
+  .listen(3000);
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-  res.end();
-});
-
-app.listen(port);
-console.log("Server started at http://localhost:" + port);
+console.log("server started");
