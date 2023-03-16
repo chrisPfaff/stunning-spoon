@@ -1,10 +1,8 @@
-const http = require("http");
+const express = require("express");
+const app = express();
+const port = 3000;
 
-http
-  .createServer(function (req, res) {
-    res.write("Server working");
-    res.end();
-  })
-  .listen(3000);
+app.use(express.static());
+app.get("/", (req, res) => res.sendFile(__dirname + "/index.html"));
 
-console.log("server started");
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
