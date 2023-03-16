@@ -1,10 +1,10 @@
-const http = require("http");
+const express = require("express");
+const server = require("http").createServer();
+const app = express();
 
-http
-  .createServer(function (req, res) {
-    res.write("Server working");
-    res.end();
-  })
-  .listen(3000);
+app.get("/", (req, res) => {
+  res.sendFile("index.html", { root: __dirname });
+});
 
-console.log("server started");
+server.on("request", app);
+server.listen(3000, () => console.log("Listening on 3000"));
